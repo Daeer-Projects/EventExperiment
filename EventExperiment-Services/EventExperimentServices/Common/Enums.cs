@@ -13,7 +13,8 @@ namespace EventExperimentServices.Common
         {
             Movement,
             Action,
-            ReAction
+            Object,
+            Monster
         };
 
     }

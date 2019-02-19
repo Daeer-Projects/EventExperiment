@@ -27,7 +27,7 @@ namespace EventExperimentServices.Generators
             // Need to get a message type.
             var newMessageType = GenerateRandomType();
 
-            // Need to get a list of actions / movement / re-actions based on the type.
+            // Need to get a list of actions / movement / objects / monsters based on the type.
             var messageList = GenerateMessages(newMessageType);
 
             var newMessage = new Message(newMessageId, newMessageType, messageList);
@@ -64,12 +64,20 @@ namespace EventExperimentServices.Generators
                         messages.Add(Constants.ActionItems.AsReadOnly()[messageSelection]);
                         break;
                     }
-                case Enums.MessageTypes.ReAction:
+                case Enums.MessageTypes.Object:
                     {
                         var random = new Random();
-                        var messageSelection = random.Next(0, Constants.ReActionItems.Count - 1);
+                        var messageSelection = random.Next(0, Constants.ObjectItems.Count - 1);
 
-                        messages.Add(Constants.ReActionItems.AsReadOnly()[messageSelection]);
+                        messages.Add(Constants.ObjectItems.AsReadOnly()[messageSelection]);
+                        break;
+                    }
+                case Enums.MessageTypes.Monster:
+                    {
+                        var random = new Random();
+                        var messageSelection = random.Next(0, Constants.MonsterItems.Count - 1);
+
+                        messages.Add(Constants.MonsterItems.AsReadOnly()[messageSelection]);
                         break;
                     }
                 default:

@@ -23,19 +23,19 @@ namespace EventExperimentServices.Types
             MessageList = messages;
         }
 
-        public Message SetMessageId(Guid id)
-        {
-            return new Message(id, MessageTypes, MessageList);
-        }
+        //public Message SetMessageId(Guid id)
+        //{
+        //    return new Message(id, MessageTypes, MessageList);
+        //}
 
-        public Message SetMessageType(Enums.MessageTypes type)
-        {
-            return new Message(MessageId, type, MessageList);
-        }
+        //public Message SetMessageType(Enums.MessageTypes type)
+        //{
+        //    return new Message(MessageId, type, MessageList);
+        //}
 
-        public Message SetMessageList(IList<string> messages)
-        {
-            return new Message(MessageId, MessageTypes, messages);
-        }
+        //public Message SetMessageList(IList<string> messages)
+        //{
+        //    return new Message(MessageId, MessageTypes, messages);
+        //}
     }
 }

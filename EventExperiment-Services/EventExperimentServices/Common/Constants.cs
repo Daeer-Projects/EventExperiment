@@ -6,6 +6,8 @@ namespace EventExperimentServices.Common
 {
     public class Constants
     {
+        public const string LogMessageTemplate = "{0} - {1} ({2}) - Details: {3}";
+
         public static List<string> MovementItems = new List<string>
         {
             "N",
@@ -42,16 +44,39 @@ namespace EventExperimentServices.Common
             "Search",
             "Talk",
             "Say",
-            "Wait"
-        };
-
-        public static List<string> ReActionItems = new List<string>
-        {
+            "Wait",
             "Defend",
             "Duck",
             "Counter",
             "Hide",
             "Jump"
+        };
+
+        public static List<string> ObjectItems = new List<string>
+        {
+            "Door",
+            "Chest",
+            "Sword",
+            "Axe",
+            "Knife",
+            "Armour",
+            "Shield",
+            "Table",
+            "Food",
+            "Drink"
+        };
+
+        public static List<string> MonsterItems = new List<string>
+        {
+            "Human",
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Halfling",
+            "Orc",
+            "Ogre",
+            "Troll",
+            "Goblin"
         };
     }
 }

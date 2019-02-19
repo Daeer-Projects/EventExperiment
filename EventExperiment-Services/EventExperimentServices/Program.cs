@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
+
+using EventExperimentServices.Common;
+using EventExperimentServices.Extensions;
 using EventExperimentServices.Generators;
+using EventExperimentServices.Services;
 using Serilog;
 
 namespace EventExperimentServices
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -21,15 +24,20 @@ namespace EventExperimentServices
             Log.Logger.Information($"Welcome to the messaging service using events.");
 
             var messageGenerator = new MessageGenerator(Log.Logger);
+            var messageService = new MessageService(Log.Logger);
+            var messageTypeService = new MessageTypeSwitchService(Log.Logger);
+            var eventContainer = new EventPubSubContainer(messageService, messageTypeService)
+                .SetUpEventConnections();
 
             Parallel.For(1, 100, (x) =>
             {
                 Log.Logger.Information($"Item: {x}.");
                 var message = messageGenerator.GenerateNewMessage();
-                Log.Logger.Information(
-                    $"Message Generated: Id: {message.MessageId}, Type: {message.MessageTypes.ToString("G")}, Messages: {string.Join(",", message.MessageList)}.");
+                messageService.SendMessageEvent(message);
+                var messageDetail =
+                    $"Type: {message.MessageTypes.ToString("G")}, Messages: {string.Join(",", message.MessageList)}.";
+                Log.Logger.Information(Constants.LogMessageTemplate, message.MessageId, "Program", "Main", messageDetail);
             });
-
 
             Console.WriteLine("Press any key to continue.");
             Log.CloseAndFlush();
