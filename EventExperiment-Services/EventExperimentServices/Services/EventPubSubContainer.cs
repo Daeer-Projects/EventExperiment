@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EventExperimentServices.Services
+﻿namespace EventExperimentServices.Services
 {
     public class EventPubSubContainer
     {
-        public MessageService MessageService { get; set; }
-        public MessageTypeSwitchService MessageTypeSwitchService { get; set; }
+        public MessageService MessageService { get; }
+        public MessageTypeSwitchService MessageTypeSwitchService { get; }
 
         public EventPubSubContainer(MessageService messageService, MessageTypeSwitchService typeSwitchService)
         {

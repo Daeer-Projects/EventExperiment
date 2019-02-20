@@ -9,7 +9,7 @@ namespace EventExperimentServices.Services
     public class MessageService
     {
         private readonly ILogger _logger;
-        public event EventHandler<MessageSentReceivedArgs> MessageHandler;
+        public event EventHandler<MessageSentReceivedArgs> MessageHandler = delegate {};
 
         public MessageService(ILogger log)
         {
@@ -21,8 +21,13 @@ namespace EventExperimentServices.Services
         {
             _logger.Information(Constants.LogMessageTemplate, message.MessageId, GetType().Name,
                 "SendMessageEvent", "Sent message event raised.");
-            MessageHandler?.Invoke(this,
-                new MessageSentReceivedArgs(
+            //MessageHandler?.Invoke(this,
+            //    new MessageSentReceivedArgs(
+            //        new Exception("Message Handler: Error."),
+            //        false,
+            //        "Message Sent Event.",
+            //        message));
+            MessageHandler(this, new MessageSentReceivedArgs(
                     new Exception("Message Handler: Error."),
                     false,
                     "Message Sent Event.",

@@ -10,16 +10,17 @@ namespace EventExperimentServices.Services
     {
         private readonly ILogger _logger;
 
-        public event EventHandler<MovementTypeEventArgs> MovementEventHandler;
-        public event EventHandler<ActionTypeEventArgs> ActionEventHandler;
-        public event EventHandler<ObjectTypeEventArgs> ObjectEventHandler;
-        public event EventHandler<MonsterTypeEventArgs> MonsterEventHandler; 
+        public event EventHandler<MovementTypeEventArgs> MovementEventHandler = delegate { };
+        public event EventHandler<ActionTypeEventArgs> ActionEventHandler = delegate { };
+        public event EventHandler<ObjectTypeEventArgs> ObjectEventHandler = delegate { };
+        public event EventHandler<MonsterTypeEventArgs> MonsterEventHandler = delegate { };
 
         public MessageTypeSwitchService(ILogger log)
         {
             _logger = log;
         }
 
+        /// <exception cref="T:System.Exception">A delegate callback throws an exception.</exception>
         public void OnMessageReceivedEvent(object sender, MessageSentReceivedArgs args)
         {
             _logger.Information(Constants.LogMessageTemplate, args.SentMessage.MessageId, GetType().Name,
@@ -31,7 +32,13 @@ namespace EventExperimentServices.Services
                     {
                         _logger.Information(Constants.LogMessageTemplate, args.SentMessage.MessageId, GetType().Name,
                             "OnMessageReceivedEvent", "Movement type detected. Sending on.");
-                        MovementEventHandler?.Invoke(this,
+                        //MovementEventHandler?.Invoke(this,
+                        //    new MovementTypeEventArgs(
+                        //        new Exception("Movement Handler: Error."),
+                        //        false,
+                        //        "Movement Sent Event.",
+                        //        args.SentMessage.MessageList));
+                        MovementEventHandler(this,
                             new MovementTypeEventArgs(
                                 new Exception("Movement Handler: Error."),
                                 false,
@@ -43,7 +50,7 @@ namespace EventExperimentServices.Services
                     {
                         _logger.Information(Constants.LogMessageTemplate, args.SentMessage.MessageId, GetType().Name,
                             "OnMessageReceivedEvent", "Action type detected. Sending on.");
-                        ActionEventHandler?.Invoke(this,
+                        ActionEventHandler(this,
                             new ActionTypeEventArgs(
                                 new Exception("Action Handler: Error."),
                                 false,
@@ -55,7 +62,7 @@ namespace EventExperimentServices.Services
                     {
                         _logger.Information(Constants.LogMessageTemplate, args.SentMessage.MessageId, GetType().Name,
                             "OnMessageReceivedEvent", "Object type detected. Sending on.");
-                        ObjectEventHandler?.Invoke(this,
+                        ObjectEventHandler(this,
                             new ObjectTypeEventArgs(
                                 new Exception("Object Handler: Error."),
                                 false,
@@ -67,7 +74,7 @@ namespace EventExperimentServices.Services
                     {
                         _logger.Information(Constants.LogMessageTemplate, args.SentMessage.MessageId, GetType().Name,
                             "OnMessageReceivedEvent", "Monster type detected.  Sending on.");
-                        MonsterEventHandler?.Invoke(this,
+                        MonsterEventHandler(this,
                             new MonsterTypeEventArgs(
                                 new Exception("Monster Handler: Error."),
                                 false,
