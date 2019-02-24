@@ -26,6 +26,8 @@ namespace EventExperiment_EasyHub
             var hub = MessageHub.Instance;
             var messageService = new MessageService(Log.Logger, hub);
             var messageType = new MessageTypeSwitchService(Log.Logger, hub);
+            var actionService = new ActionService(Log.Logger, hub);
+            var movementService = new MovementService(Log.Logger, hub);
 
             Parallel.For(1, 100, (x) =>
             {

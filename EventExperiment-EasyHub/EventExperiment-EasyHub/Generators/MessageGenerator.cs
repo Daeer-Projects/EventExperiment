@@ -38,7 +38,7 @@ namespace EventExperiment_EasyHub.Generators
         private Enums.MessageTypes GenerateRandomType()
         {
             var random = new Random();
-            var type = (Enums.MessageTypes)random.Next(0, 2);
+            var type = (Enums.MessageTypes)random.Next(0, 4);
             return type;
         }
 

@@ -18,3 +18,15 @@ This is a simple event system, that raised transactional events that are then co
   Another experiment, the same as the services, but I found something that seems to be easier to set up and use.
   So, I'll continue with what I was doing in the Services version, but using this easy message hub.
   Performance is the same or slightly better than the Services version.
+
+---
+
+## What else
+
+As I have been working on experimenting with the event systems in C#, I have come to find, that the tools / packages out there are pretty good.
+
+I have come up with a couple of ideas to help me improve my knowledge.
+
+1. Create my own EasyHub.  All I need to do, is have something that registers the subscribers, and calls each of them when a publish event happens.  What could possibly go wrong? :)
+
+2. Using the messaging types I have used, why not create a simple adventure game to use the messaging types?  Should be fun.
