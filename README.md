@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# EventExperiment
 
-You can use the [editor on GitHub](https://github.com/daeer73/EventExperiment/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+As experiment with Events using the Pub/Sub pattern - I think!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Introduction
 
-### Markdown
+This is a simple event system, that raised transactional events that are then consumed by other subscribers to the events. I am going to make several solutions to show the different ways of making events work.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Solutions
 
-```markdown
-Syntax highlighted code block
+* EventExperiment-Basic.
+  Just the first experiment to see how it works.
 
-# Header 1
-## Header 2
-### Header 3
+* EventExperiment-Services.
+  Another experiment, but keeping the Pub/Sub in the same class, pretending to be a service.
 
-- Bulleted
-- List
+* EventExperiment-EasyHub.
+  Another experiment, the same as the services, but I found something that seems to be easier to set up and use.
+  So, I'll continue with what I was doing in the Services version, but using this easy message hub.
+  Performance is the same or slightly better than the Services version.
 
-1. Numbered
-2. List
+---
 
-**Bold** and _Italic_ and `Code` text
+## What else
 
-[Link](url) and ![Image](src)
-```
+As I have been working on experimenting with the event systems in C#, I have come to find, that the tools / packages out there are pretty good.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+I have come up with a couple of ideas to help me improve my knowledge.
 
-### Jekyll Themes
+1. Create my own EasyHub.  All I need to do, is have something that registers the subscribers, and calls each of them when a publish event happens.  What could possibly go wrong? :)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/daeer73/EventExperiment/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+2. Using the messaging types I have used, why not create a simple adventure game to use the messaging types?  Should be fun.
